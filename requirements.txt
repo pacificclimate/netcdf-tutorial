@@ -1,0 +1,8 @@
+numpy
+matplotlib
+ipython
+netcdf4
+pyzmq
+jinja2
+tornado
+jsonschema
