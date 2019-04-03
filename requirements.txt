@@ -6,3 +6,4 @@ pyzmq
 jinja2
 tornado
 jsonschema
+humanize
