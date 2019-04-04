@@ -7,7 +7,6 @@ from argparse import ArgumentParser
 import numpy as np
 import netCDF4
 import h5py
-from netCDF4 import Dataset
 from humanize import naturalsize
 from contextdecorator import ContextDecorator
 
@@ -68,7 +67,7 @@ class GriddedFile(object):
                 a = extract_direct(self.dst, var, x, y)
             elif method == 'iterative':
                 a = extract_iterative(self.dst, var, x, y, self.zlen)
-        
+
         self.close()
         return t.bytes_per_second(a)
 
@@ -126,12 +125,12 @@ class NCGridded(GriddedFile):
 def extract_iterative(dst, var, x, y, zlen):
     a = np.empty(shape=(zlen))
     for i in range(zlen):
-        a[i] = dst[var][i,y,x]
+        a[i] = dst[var][i, y, x]
     return a
 
 
 def extract_direct(dst, var, x, y):
-    return dst[var][:,y,x]
+    return dst[var][:, y, x]
 
 
 if __name__ == '__main__':
@@ -147,8 +146,8 @@ if __name__ == '__main__':
                         help='Which library to use tointerface with the grid')
     parser.add_argument('-m', '--method', choices=['direct', 'iterative'],
                         default='direct',
-                        help="Whether to make a single getitem call to the grid"
-                             " library or to go step-by-step.")
+                        help="Whether to make a single getitem call to the "
+                             "grid library or to go step-by-step.")
 
     args = parser.parse_args()
 
